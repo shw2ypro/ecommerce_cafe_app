@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class AppConstants {
-  static String appName = "Deraya";
+  static String appName = "E-commerce Cafe";
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static Color appPrimaryColor = Color(0xff372922);
   static Color appSecondaryColor = Color(0xff9b6f4c);

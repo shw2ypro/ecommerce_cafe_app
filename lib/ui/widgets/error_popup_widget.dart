@@ -13,74 +13,43 @@ class ErrorPopupWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Platform.isAndroid
-        ? AlertDialog(
-            title: Text(
-              title,
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            titleTextStyle: Theme.of(context).textTheme.headline3,
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  message,
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-                errors != null
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: errors.entries
-                            .map(
-                              (MapEntry<String, dynamic> e) => Text(
-                                e.value[0].toString(),
-                              ),
-                            )
-                            .toList(),
-                      )
-                    : Container(),
-              ],
-            ),
-            contentTextStyle: Theme.of(context).textTheme.bodyText1,
-            actions: <Widget>[
-              FlatButton(
-                child: Text("OK"),
-                onPressed: clickOkButton != null
-                    ? clickOkButton
-                    : () => Navigator.of(context).pop(),
-              )
-            ],
+    return AlertDialog(
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.headline3,
+      ),
+      titleTextStyle: Theme.of(context).textTheme.headline3,
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            message,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+          errors != null
+              ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: errors.entries
+                .map(
+                  (MapEntry<String, dynamic> e) => Text(
+                e.value[0].toString(),
+              ),
+            )
+                .toList(),
           )
-        : CupertinoAlertDialog(
-            title: Text(title),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(message ?? ''),
-                errors != null
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: errors.entries
-                            .map(
-                              (MapEntry<String, dynamic> e) => Text(
-                                e.value[0].toString(),
-                              ),
-                            )
-                            .toList(),
-                      )
-                    : Container(),
-              ],
-            ),
-            actions: <Widget>[
-              CupertinoDialogAction(
-                child: Text("ok"),
-                onPressed: clickOkButton != null
-                    ? clickOkButton
-                    : () => Navigator.of(context).pop(),
-              )
-            ],
-          );
+              : Container(),
+        ],
+      ),
+      contentTextStyle: Theme.of(context).textTheme.bodyText1,
+      actions: <Widget>[
+        FlatButton(
+          child: Text("OK"),
+          onPressed: clickOkButton != null
+              ? clickOkButton
+              : () => Navigator.of(context).pop(),
+        )
+      ],
+    );
   }
 }
